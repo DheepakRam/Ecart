@@ -1,5 +1,6 @@
 # Ecart
 
+This project demonstrates a simple e-commerce application. It is built with Angular version 11, Firebase version 7 and Bootstrap version 5.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
 
 ## Development server
