@@ -1,0 +1,52 @@
+<h1>Shopping Cart</h1>
+<div class="row col-10">
+    <p>
+        You have {{shoppingCartItemCount}} items in your shopping cart.
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th class="text-center" style="width:230px;">Quantity</th>
+                <th class="text-end" style="width:200px;">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartItems">
+                <td *ngIf="item.quantity>0">
+                    <img [style.backgroundImage]="'url('+item.imageUrl+')'" class="thumbnail" alt=""/>
+                </td>
+                <td class="cart-padding" *ngIf="item.quantity>0">
+                    {{item.title}}
+                </td>
+                <td *ngIf="item.quantity>0">
+                    <div class="row g-0">
+                        <div class="col-2">
+                            <button style="margin-top: 27px;" class="btn cartBtn btn-secondary" (click)="removeFromShoppingCart(item.title)">-</button>
+                        </div>
+                        <div class="cart-padding col-8 text-center cartTxt">
+                            {{item.quantity}}
+                        </div>
+                        <div class="col-2">
+                            <button style="margin-top: 28px;" class="btn cartBtn btn-secondary" (click)="addToShoppingCart(item.title)">+</button>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-end cart-padding" *ngIf="item.quantity>0">
+                    {{item.price*item.quantity | currency:'INR'}}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="text-end">{{shoppingCartTotalPrice | currency:'INR'}}</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<a routerLink="/check-out" *ngIf="shoppingCartItemCount>0" class="btn btn-primary">Check Out</a>&nbsp;&nbsp;&nbsp;
+<button (click)="clearCart()" class="btn btn-danger">Clear Shopping Cart</button>
